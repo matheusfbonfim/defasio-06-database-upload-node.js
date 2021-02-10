@@ -24,8 +24,12 @@ class Transaction {
   @Column('decimal')
   value: number;
 
+  // Ligando com a chave estrangeira
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @Column()
   category_id: string;
 
   @CreateDateColumn()

@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { getCustomRepository } from 'typeorm';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
@@ -8,7 +9,14 @@ import CreateTransactionService from '../services/CreateTransactionService';
 const transactionsRouter = Router();
 
 transactionsRouter.get('/', async (request: Request, response: Response) => {
-  // TODO
+  // Apenas retornar sem regra de negócio pré-fixada
+  const transactionsRepository = getCustomRepository(TransactionsRepository);
+
+  // find -> Busca todos os registros que puderem serem encontrados
+  const transactions = await transactionsRepository.find();
+  const balance = await transactionsRepository.getBalance();
+
+  return response.json({ transactions, balance });
 });
 
 transactionsRouter.post('/', async (request: Request, response: Response) => {
