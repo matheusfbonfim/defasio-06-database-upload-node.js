@@ -61,11 +61,10 @@ transactionsRouter.post(
   upload.single('file'),
   async (request: Request, response: Response) => {
     // Instanciando o servico de import
-    const importTransaction = new ImportTransactionService();
+    const importTransactions = new ImportTransactionsService();
 
     // request.file.path -> Diretorio do arquivo
-    const transactions = await importTransaction.execute(request.file.path);
-
+    const transactions = await importTransactions.execute(request.file.path);
     return response.json(transactions);
   },
 );

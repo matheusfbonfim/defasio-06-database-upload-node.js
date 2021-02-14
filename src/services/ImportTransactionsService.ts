@@ -8,11 +8,11 @@ class ImportTransactionsService {
     const contactsReadStream = fs.createReadStream(filePath);
 
     // config de parse
-    const parses = csvParse({
+    const parsers = csvParse({
       from_line: 2,
     });
 
-    const parseCSV = contactsReadStream.pipe(parses);
+    const parseCSV = contactsReadStream.pipe(parsers);
 
     const transactions = [];
     const categories = [];
@@ -30,8 +30,7 @@ class ImportTransactionsService {
 
     await new Promise(resolve => parseCSV.on('end', resolve));
 
-    console.log(categories);
-    console.log(transactions);
+    return { categories, transactions };
   }
 }
 
