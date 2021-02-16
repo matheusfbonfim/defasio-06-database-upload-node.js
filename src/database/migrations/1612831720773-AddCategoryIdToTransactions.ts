@@ -25,7 +25,7 @@ export default class AddCategoryIdToTransactions1612831720773
         columnNames: ['category_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'categories',
-        name: 'TransactionsCategory',
+        name: 'TransactionCategory',
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       }),
